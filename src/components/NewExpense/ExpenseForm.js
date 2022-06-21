@@ -5,21 +5,43 @@ const ExpenseForm = () => {
   const [enteredTitle, setEnteredTitle] = useState('');
   const [enteredAmount, setEnteredAmount] = useState('');
   const [enteredDate, setEnteredDate] = useState('');
+  // const [enteredData, setEnteredData] = useState({
+  // 	enteredTitle: '',
+  // 	enteredAmount: '',
+  // 	enteredDate: ''
+  // });
 
   const handleTitleChange = (event) => {
     setEnteredTitle(event.target.value);
+    // setEnteredDate((prevState) => {
+    //   ...prevState,
+    //   enteredTitle: event.target.value,
+    // })
   };
 
   const handleAmountChange = (event) => {
     setEnteredAmount(event.target.value);
+    // setEnteredDate((prevState) => {
+    //   ...prevState,
+    //   enteredAmount: event.target.value,
+    // })
   };
 
   const handleDateChange = (event) => {
     setEnteredDate(event.target.value);
+    // setEnteredDate((prevState) => {
+    //   ...prevState,
+    //   enteredDate: event.target.value,
+    // })
+  };
+
+  const handleFormSubmit = (event) => {
+    event.preventDefault();
+    console.log(enteredTitle, enteredAmount, enteredDate);
   };
 
   return (
-    <StyledExpenseForm>
+    <StyledExpenseForm onSubmit={handleFormSubmit}>
       <div className="new-expense__controls">
         <div className="new-expense__control">
           <label htmlFor="title">Title</label>
