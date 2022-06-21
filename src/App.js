@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import NewExpense from './components/NewExpense/NewExpense';
 import Expenses from './components/Expenses/Expenses';
 
 const App = () => {
-  const expenses = [
+  const [expenses, setExpenses] = useState([
     {
       id: 'e1',
       title: 'Toilet Paper',
@@ -28,12 +28,13 @@ const App = () => {
       amount: 450,
       date: new Date(2021, 5, 12),
     },
-  ];
+  ]);
 
   const handleAddExpense = (expense) => {
     console.log('App.js ', expense);
-    expenses.push(expense);
-    console.log(expenses);
+    setExpenses((prevState) => {
+      return [...prevState, expense];
+    });
   };
 
   // JSX 동작 방식

@@ -8,6 +8,7 @@ const Expenses = ({ expenses }) => {
       {expenses.map((expense) => {
         return (
           <ExpenseItem
+            id={expense.id}
             title={expense.title}
             amount={expense.amount}
             date={expense.date}
