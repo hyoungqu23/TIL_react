@@ -48,6 +48,7 @@ const App = () => {
   return (
     <div className="App">
       <NewExpense onAddExpense={handleAddExpense} />
+
       <Expenses expenses={expenses} />
     </div>
   );
