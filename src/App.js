@@ -1,6 +1,7 @@
-import Expenses from './components/Expenses';
+import React from 'react';
+import Expenses from './components/Expenses/Expenses';
 
-function App() {
+const App = () => {
   const expenses = [
     {
       id: 'e1',
@@ -28,11 +29,19 @@ function App() {
     },
   ];
 
+  // JSX 동작 방식
+  // return React.createElement(
+  // 	"div",
+  // 	{},
+  // 	React.createElement("h2", {}, "Getting Started"),
+  // 	React.createElement(Expenses, {items: expenses})
+  // );
+
   return (
     <div className="App">
       <Expenses expenses={expenses} />
     </div>
   );
-}
+};
 
 export default App;
