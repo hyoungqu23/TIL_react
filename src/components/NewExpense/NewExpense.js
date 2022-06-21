@@ -4,7 +4,7 @@ import ExpenseForm from './ExpenseForm';
 
 const NewExpense = () => {
   return (
-    <StyledNewExpense>
+    <StyledNewExpense className="new-expense">
       <ExpenseForm />
     </StyledNewExpense>
   );
@@ -22,7 +22,7 @@ const StyledNewExpense = styled.div`
   text-align: center;
   box-shadow: 0 1px 8px rgba(0, 0, 0, 0.25);
 
-  .new-expense button {
+  & button {
     font: inherit;
     cursor: pointer;
     padding: 1rem 2rem;
@@ -33,20 +33,20 @@ const StyledNewExpense = styled.div`
     margin-right: 1rem;
   }
 
-  .new-expense button:hover,
-  .new-expense button:active {
+  & button:hover,
+  & button:active {
     background-color: #510674;
     border-color: #510674;
   }
 
-  .new-expense button.alternative {
+  & button.alternative {
     color: #220131;
     border-color: transparent;
     background-color: transparent;
   }
 
-  .new-expense button.alternative:hover,
-  .new-expense button.alternative:active {
+  & button.alternative:hover,
+  & button.alternative:active {
     background-color: #ddb3f8;
   }
 `;
