@@ -1,13 +1,23 @@
+import { useState } from 'react';
 import styled from 'styled-components';
+import Card from '../UI/Card';
 import ExpenseDate from './ExpenseDate';
 
-const ExpenseItem = ({ title, amount, date }) => {
+const ExpenseItem = (props) => {
+  const [title, setTitle] = useState(props.title);
+
+  const handleButtonClick = () => {
+    setTitle('Clicked!');
+    console.log(title);
+  };
+
   return (
-    <StyledExpenseItem>
-      <ExpenseDate date={date} />
+    <StyledExpenseItem className="expense-item">
+      <ExpenseDate date={props.date} />
       <div className="expense-item__description">
         <h2>{title}</h2>
-        <div className="expense-item__price">{amount}</div>
+        <div className="expense-item__price">{props.amount}</div>
+        <button onClick={handleButtonClick}>Change Title</button>
       </div>
     </StyledExpenseItem>
   );
@@ -15,14 +25,12 @@ const ExpenseItem = ({ title, amount, date }) => {
 
 export default ExpenseItem;
 
-const StyledExpenseItem = styled.div`
+const StyledExpenseItem = styled(Card)`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
   padding: 0.5rem;
   margin: 1rem 0;
-  border-radius: 12px;
   background-color: #4b4b4b;
 
   .expense-item__description {
