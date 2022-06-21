@@ -30,6 +30,12 @@ const App = () => {
     },
   ];
 
+  const handleAddExpense = (expense) => {
+    console.log('App.js ', expense);
+    expenses.push(expense);
+    console.log(expenses);
+  };
+
   // JSX 동작 방식
   // return React.createElement(
   // 	"div",
@@ -40,7 +46,7 @@ const App = () => {
 
   return (
     <div className="App">
-      <NewExpense />
+      <NewExpense onAddExpense={handleAddExpense} />
       <Expenses expenses={expenses} />
     </div>
   );
