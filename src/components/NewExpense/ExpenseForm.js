@@ -21,7 +21,7 @@ const ExpenseForm = () => {
 
   const handleAmountChange = (event) => {
     setEnteredAmount(event.target.value);
-    // setEnteredDate((prevState) => {
+    // setEnteredDate((prevState) => {prevState
     //   ...prevState,
     //   enteredAmount: event.target.value,
     // })
@@ -37,7 +37,18 @@ const ExpenseForm = () => {
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
-    console.log(enteredTitle, enteredAmount, enteredDate);
+
+    // 객체화
+    const expenseData = {
+      title: enteredTitle,
+      amount: enteredAmount,
+      date: new Date(enteredDate),
+    };
+
+    // 초기화 -> 양방향 바인딩 활용
+    setEnteredTitle('');
+    setEnteredAmount('');
+    setEnteredDate('');
   };
 
   return (
@@ -45,7 +56,12 @@ const ExpenseForm = () => {
       <div className="new-expense__controls">
         <div className="new-expense__control">
           <label htmlFor="title">Title</label>
-          <input name="title" type="text" onChange={handleTitleChange} />
+          <input
+            name="title"
+            type="text"
+            onChange={handleTitleChange}
+            value={enteredTitle}
+          />
         </div>
         <div className="new-expense__control">
           <label htmlFor="amount">Amount</label>
@@ -55,6 +71,7 @@ const ExpenseForm = () => {
             min="0"
             step="1"
             onChange={handleAmountChange}
+            value={enteredAmount}
           />
         </div>
         <div className="new-expense__control">
@@ -65,6 +82,7 @@ const ExpenseForm = () => {
             min="2019-01-01"
             max="2022-12-31"
             onChange={handleDateChange}
+            value={enteredDate}
           />
         </div>
       </div>
