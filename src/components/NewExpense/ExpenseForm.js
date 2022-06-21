@@ -1,21 +1,49 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 const ExpenseForm = () => {
+  const [enteredTitle, setEnteredTitle] = useState('');
+  const [enteredAmount, setEnteredAmount] = useState('');
+  const [enteredDate, setEnteredDate] = useState('');
+
+  const handleTitleChange = (event) => {
+    setEnteredTitle(event.target.value);
+  };
+
+  const handleAmountChange = (event) => {
+    setEnteredAmount(event.target.value);
+  };
+
+  const handleDateChange = (event) => {
+    setEnteredDate(event.target.value);
+  };
+
   return (
     <StyledExpenseForm>
       <div className="new-expense__controls">
         <div className="new-expense__control">
           <label htmlFor="title">Title</label>
-          <input name="title" type="text" />
+          <input name="title" type="text" onChange={handleTitleChange} />
         </div>
         <div className="new-expense__control">
           <label htmlFor="amount">Amount</label>
-          <input name="amount" type="number" min="0" step="1" />
+          <input
+            name="amount"
+            type="number"
+            min="0"
+            step="1"
+            onChange={handleAmountChange}
+          />
         </div>
         <div className="new-expense__control">
           <label htmlFor="date">Date</label>
-          <input name="date" type="date" min="2019-01-01" max="2022-12-31" />
+          <input
+            name="date"
+            type="date"
+            min="2019-01-01"
+            max="2022-12-31"
+            onChange={handleDateChange}
+          />
         </div>
       </div>
       <div className="new-expense__actions">
