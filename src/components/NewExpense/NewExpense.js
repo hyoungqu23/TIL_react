@@ -15,6 +15,7 @@ const NewExpense = ({ onAddExpense }) => {
       id: Math.random().toString(),
     };
     onAddExpense(expenseData);
+    setIsEditMode(!isEditMode);
   };
 
   return (
