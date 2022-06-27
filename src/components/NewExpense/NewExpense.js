@@ -3,14 +3,10 @@ import styled from 'styled-components';
 import ExpenseForm from './ExpenseForm';
 
 const NewExpense = ({ onAddExpense }) => {
-  const [isAddButtonClicked, setIsAddButtonClicked] = useState(false);
+  const [isEditMode, setIsEditMode] = useState(false);
 
-  const handleAddButtonClick = () => {
-    setIsAddButtonClicked(true);
-  };
-
-  const handleCancelButtonClick = (isClicked) => {
-    setIsAddButtonClicked(isClicked);
+  const handleEditMode = () => {
+    setIsEditMode(!isEditMode);
   };
 
   const handleExpenseDataSave = (enteredExpenseData) => {
@@ -21,21 +17,15 @@ const NewExpense = ({ onAddExpense }) => {
     onAddExpense(expenseData);
   };
 
-  let expenseFormContent = (
-    <button onClick={handleAddButtonClick}>Add New Expense</button>
-  );
-
-  isAddButtonClicked &&
-    (expenseFormContent = (
-      <ExpenseForm
-        onSaveExpenseData={handleExpenseDataSave}
-        isCancelButtonClicked={handleCancelButtonClick}
-      />
-    ));
-
   return (
     <StyledNewExpense className="new-expense">
-      {expenseFormContent}
+      {!isEditMode && <button onClick={handleEditMode}>Add New Expense</button>}
+      {isEditMode && (
+        <ExpenseForm
+          onSaveExpenseData={handleExpenseDataSave}
+          onCancel={handleEditMode}
+        />
+      )}
     </StyledNewExpense>
   );
 };
