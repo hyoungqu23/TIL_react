@@ -7,10 +7,28 @@ import styled from 'styled-components';
 
 const Expenses = ({ expenses }) => {
   const [selectedYear, setSelectedYear] = useState('2022');
+
   const handleFilterChange = (filteredYear) => {
-    console.log('Expenses.js ', filteredYear);
     setSelectedYear(filteredYear);
   };
+
+  const filteredExpenses = expenses.filter((expense) => {
+    return expense.date.getFullYear() === +selectedYear;
+  });
+
+  let expensesContent = <div>No Expense</div>;
+
+  filteredExpenses.length > 0 &&
+    (expensesContent = filteredExpenses.map((expense) => {
+      return (
+        <ExpenseItem
+          key={expense.id}
+          title={expense.title}
+          amount={expense.amount}
+          date={expense.date}
+        />
+      );
+    }));
 
   return (
     <StyledExpenses className="expenses">
@@ -18,16 +36,7 @@ const Expenses = ({ expenses }) => {
         onChangeFilter={handleFilterChange}
         selectedYear={selectedYear}
       />
-      {expenses.map((expense) => {
-        return (
-          <ExpenseItem
-            id={expense.id}
-            title={expense.title}
-            amount={expense.amount}
-            date={expense.date}
-          />
-        );
-      })}
+      {expensesContent}
     </StyledExpenses>
   );
 };
