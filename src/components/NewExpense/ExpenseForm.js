@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-const ExpenseForm = ({ onSaveExpenseData }) => {
+const ExpenseForm = ({ onSaveExpenseData, isCancelButtonClicked }) => {
   const [enteredTitle, setEnteredTitle] = useState('');
   const [enteredAmount, setEnteredAmount] = useState('');
   const [enteredDate, setEnteredDate] = useState('');
@@ -33,6 +33,10 @@ const ExpenseForm = ({ onSaveExpenseData }) => {
     //   ...prevState,
     //   enteredDate: event.target.value,
     // })
+  };
+
+  const handleCancelButtonClick = () => {
+    isCancelButtonClicked(false);
   };
 
   const handleFormSubmit = (event) => {
@@ -89,6 +93,9 @@ const ExpenseForm = ({ onSaveExpenseData }) => {
         </div>
       </div>
       <div className="new-expense__actions">
+        <button type="button" onClick={handleCancelButtonClick}>
+          Cancel
+        </button>
         <button type="submit">Add</button>
       </div>
     </StyledExpenseForm>

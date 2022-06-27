@@ -1,8 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import ExpenseForm from './ExpenseForm';
 
 const NewExpense = ({ onAddExpense }) => {
+  const [isAddButtonClicked, setIsAddButtonClicked] = useState(false);
+
+  const handleAddButtonClick = () => {
+    setIsAddButtonClicked(true);
+  };
+
+  const handleCancelButtonClick = (isClicked) => {
+    setIsAddButtonClicked(isClicked);
+  };
+
   const handleExpenseDataSave = (enteredExpenseData) => {
     const expenseData = {
       ...enteredExpenseData,
@@ -11,9 +21,21 @@ const NewExpense = ({ onAddExpense }) => {
     onAddExpense(expenseData);
   };
 
+  let expenseFormContent = (
+    <button onClick={handleAddButtonClick}>Add New Expense</button>
+  );
+
+  isAddButtonClicked &&
+    (expenseFormContent = (
+      <ExpenseForm
+        onSaveExpenseData={handleExpenseDataSave}
+        isCancelButtonClicked={handleCancelButtonClick}
+      />
+    ));
+
   return (
     <StyledNewExpense className="new-expense">
-      <ExpenseForm onSaveExpenseData={handleExpenseDataSave} />
+      {expenseFormContent}
     </StyledNewExpense>
   );
 };
