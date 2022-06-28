@@ -41,7 +41,7 @@ const ExpenseForm = ({ onSaveExpenseData, onCancel }) => {
     // 객체화
     const expenseData = {
       title: enteredTitle,
-      amount: enteredAmount,
+      amount: +enteredAmount,
       date: new Date(enteredDate),
     };
 
